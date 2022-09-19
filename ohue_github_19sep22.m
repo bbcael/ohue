@@ -1,6 +1,6 @@
 %% generate ensembles
 clear all; close all; clc; load HT.mat;
-n = 200;
+n = 10000;
 H = [Hc Hi Hn];
 C = cov(H');
 M = mean(H');
