@@ -38,6 +38,26 @@ D(j) = d(indx);
 K(j) = m(indx)./16.09;
 end
 
+%% curvature in delta =/=0 case
+
+d = -0.005:.0001:.02;
+
+for j = 1:size(t,1);
+    j
+for i = 1:length(d);
+    delta = d(i);
+    tvar = 1+delta.*(0:49);
+    Ti = cumsum(tvar.*t(j,:));
+    fit2 = fit(Ti',h(j,:)','poly2');
+    ci2 = confint(fit2);
+    z2(i) = abs(fit2.p1)./abs(ci2(2,1)-fit2.p1).*1.96; % z quadratic
+    [fit1,gof] = fit(Ti',h(j,:)','poly1');
+    rss(i) = gof.sse;
+end
+[~,indx] = min(rss);
+Z2(j) = z2(indx);
+end
+
 %% figure 1
 
 figure;
