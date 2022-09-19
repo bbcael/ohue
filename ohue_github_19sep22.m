@@ -37,24 +37,17 @@ D(j) = d(indx);
 K(j) = m(indx)./16.09;
 end
 
-%% curvature in delta =/=0 case
 
-d = -0.005:.0001:.02;
+%% curvature in residuals in delta=/=0 case
 
 for j = 1:size(t,1);
     j
-for i = 1:length(d);
-    delta = d(i);
+    delta = D(j);
     tvar = 1+delta.*(0:49);
     Ti = cumsum(tvar.*t(j,:));
     fit2 = fit(Ti',h(j,:)','poly2');
     ci2 = confint(fit2);
-    z2(i) = abs(fit2.p1)./abs(ci2(2,1)-fit2.p1).*1.96; % z quadratic
-    [fit1,gof] = fit(Ti',h(j,:)','poly1');
-    rss(i) = gof.sse;
-end
-[~,indx] = min(rss);
-Z2(j) = z2(indx);
+    Z2(j) = abs(fit2.p1)./abs(ci2(2,1)-fit2.p1).*1.96; % z quadratic
 end
 
 %% figure 1
@@ -160,7 +153,7 @@ hold on;
 plot(1970:2019,A1+A2,'linewidth',2,'color',[128 40 97]./256)
 set(gca,'ticklabelinterpreter','latex','fontsize',16)
 ylabel('Ocean heat uptake efficiency $\kappa$ [W/m$^{2}$K]','interpreter','latex')
-axis([1969.9 2019.1 .3 .8])
+axis([1969.9 2019.1 .35 .8])
 xlabel('Year','interpreter','latex')
 lgnd = legend([a(2)],'$\pm1$ s.d.')
 set(lgnd,'interpreter','latex','fontsize',16,'location','northwest')
