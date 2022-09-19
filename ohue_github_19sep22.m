@@ -8,7 +8,6 @@ h = mvnrnd(M,C,n);
 C = cov(T');
 M = mean(T');
 t = mvnrnd(M,C,n);
-t = repmat(T,1,n./200)';
 clearvars -EXCEPT h t;
 
 %% calculate curvature when delta = 0
