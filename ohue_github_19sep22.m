@@ -145,19 +145,3 @@ axis([1969.9 2019.1 .3 .8])
 xlabel('Year','interpreter','latex')
 lgnd = legend([a(2)],'$\pm1$ s.d.')
 set(lgnd,'interpreter','latex','fontsize',16,'location','northwest')
-
-%% figure 4
-
-figure;
-[y x] = ecdf(P1);
-plot(x,y,'linewidth',2,'color',[160 79 56]./256)
-box on
-hold on;
-set(gca,'fontsize',16,'ticklabelinterpreter','latex')
-ylabel('Cumulative Distribution Function','interpreter','latex')
-xlabel('Quadratic term of fit to $\delta = 0$ case','interpreter','latex')
-axis([-.01 .06 0 1]);
-hold on;
-plot(-1:1,26/10000+0*(-1:1),'k','linewidth',.75)
-plot(0*(0:1),0:1,'k','linewidth',.75)
-
