@@ -109,10 +109,6 @@ y_2_0 = 70.*2./tcr0;
 y_1p5_1 = 70.*1.5./tcr1;
 y_2_1 = 70.*2./tcr1;
 
-ecdf(y_2_1-y_2_0)
-hold on;
-ecdf(y_1p5_1-y_1p5_0)
-
 [median(y_2_1-y_2_0) std(y_2_1-y_2_0) median(y_1p5_1-y_1p5_0) std(y_1p5_1-y_1p5_0)]
 
 %% figure 2
